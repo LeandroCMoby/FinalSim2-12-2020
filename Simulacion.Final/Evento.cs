@@ -16,7 +16,7 @@ namespace Simulacion.Final
         FinAtencionEquipo2,
         FinAtencionEquipo3,
         FinAtencionEquipo4,
-        FinAtencionEquipo5,
+        FinAtencionEquipo5
 
     }
 }

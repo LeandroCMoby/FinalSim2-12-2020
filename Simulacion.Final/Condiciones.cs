@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulacion.Final
 {
-    public class Condiciones
+    public class Condiciones: ICloneable
     {
 
         public int MediaLlegadaAlumno { get; set; }
@@ -20,6 +20,20 @@ namespace Simulacion.Final
         public int MaxAlumnosCola { get; set; }
         public int HorasSimulacion { get; set; }
 
-
+        public object Clone()
+        {
+            Condiciones condiciones = new Condiciones();
+            condiciones.AInscripcion = AInscripcion;
+            condiciones.ALlegadaMantenimiento = ALlegadaMantenimiento;
+            condiciones.BInscripcion = BInscripcion;
+            condiciones.BLlegadaMantenmiento = BLlegadaMantenmiento;
+            condiciones.DesvLlegadaAlumno = DesvLlegadaAlumno;
+            condiciones.DesvMantenimiento = DesvMantenimiento;
+            condiciones.HorasSimulacion = HorasSimulacion;
+            condiciones.MaxAlumnosCola = MaxAlumnosCola;
+            condiciones.MediaLlegadaAlumno = MediaLlegadaAlumno;
+            condiciones.MediaMantenimiento = MediaMantenimiento;
+            return condiciones;
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Simulacion.Final
 {
-    class Mantenimiento
+    public class Mantenimiento
     {
         public int id { get; set; }
         public int TiempoLlegada { get; set; }

@@ -7,7 +7,7 @@ using Simulacion.Utilidades.Distribuciones;
 
 namespace Simulacion.Final
 {
-    class EstadoSimulacion : ICloneable
+    public class EstadoSimulacion : ICloneable
     {
         public int tiempoProximoEvento { get; set; }
         public int tiempoLlegadaProximoAlumno { get; set; }
@@ -23,7 +23,7 @@ namespace Simulacion.Final
         public int numeroEvento { get; set; }
         public int numeroAlumno { get; set; }
         public List<Alumno> colaAlumnos { get; set; }
-        public List<Mantenimiento> colaMantenimientos { get;set }
+        public List<Mantenimiento> ColaMantenimientos { get; set; }
         public int AlumnosAbandono { get; set; }
         public double Inscripciones1 { get; set; }
         public double Inscripciones2 { get; set; }
@@ -43,17 +43,17 @@ namespace Simulacion.Final
             tiempo = 0;
             eventoActual = Evento.Inicio;
 
-            equipo1 = new Equipo("Equipo1", Evento.FinAtencionEquipo1);
-            equipo2 = new Equipo("Equipo2", Evento.FinAtencionEquipo2);
-            equipo3 = new Equipo("Equipo3", Evento.FinAtencionEquipo3);
-            equipo4 = new Equipo("Equipo4", Evento.FinAtencionEquipo4);
-            equipo5 = new Equipo("Equipo5", Evento.FinAtencionEquipo5);
+            equipo1 = new Equipo("Equipo1", Evento.FinAtencionEquipo1, condicionesIniciales);
+            equipo2 = new Equipo("Equipo2", Evento.FinAtencionEquipo2, condicionesIniciales);
+            equipo3 = new Equipo("Equipo3", Evento.FinAtencionEquipo3, condicionesIniciales);
+            equipo4 = new Equipo("Equipo4", Evento.FinAtencionEquipo4, condicionesIniciales);
+            equipo5 = new Equipo("Equipo5", Evento.FinAtencionEquipo5, condicionesIniciales);
 
             numeroEvento = 0;
             numeroAlumno = 1;
 
             colaAlumnos = new List<Alumno>;
-            colaMantenimientos = new List<Mantenimiento>;
+            ColaMantenimientos = new List<Mantenimiento>;
 
             AlumnosAbandono = 0;
             Inscripciones1 = 0.0;
@@ -160,7 +160,7 @@ namespace Simulacion.Final
             EstadoSimulacion estado = new EstadoSimulacion();
             estado.AlumnosAbandono = AlumnosAbandono;
             estado.colaAlumnos = colaAlumnos;
-            estado.colaMantenimientos = colaMantenimientos;
+            estado.ColaMantenimientos = ColaMantenimientos;
             estado.condicionesIniciales = condicionesIniciales;
             estado.equipo1 = (Equipo)equipo1.Clone();
             estado.equipo2 = (Equipo)equipo2.Clone();

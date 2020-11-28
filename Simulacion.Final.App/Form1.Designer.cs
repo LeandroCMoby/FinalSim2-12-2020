@@ -55,33 +55,6 @@ namespace Simulacion.Final.App
             this.txtHorasSimulacion = new System.Windows.Forms.TextBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.dvgSim = new System.Windows.Forms.DataGridView();
-            this.NumeroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LlegadaProximoAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LlegadaProximoMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColaAlumnos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColaMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo1TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo1TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo1FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo2Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo2TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo2TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo2FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo3Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo3TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo3TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo3FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo4Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo4TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo4TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo4FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo5Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo5TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo5TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Equipo5FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
@@ -96,6 +69,38 @@ namespace Simulacion.Final.App
             this.lblPromedio3 = new System.Windows.Forms.Label();
             this.lblPromedio4 = new System.Windows.Forms.Label();
             this.lblPromedio5 = new System.Windows.Forms.Label();
+            this.NumeroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LlegadaProximoAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LlegadaProximoMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColaAlumnos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColaMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo1TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo1Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo1TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo1FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo2Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo2TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo2Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo2TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo2FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo3Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo3TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo3Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo3TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo3FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo4Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo4TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo4Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo4TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo4FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo5Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo5TipoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo5Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo5TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Equipo5FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dvgSim)).BeginInit();
             this.SuspendLayout();
             // 
@@ -328,22 +333,27 @@ namespace Simulacion.Final.App
             this.ColaMantenimiento,
             this.Equipo1Estado,
             this.Equipo1TipoOcupacion,
+            this.Equipo1Alumno,
             this.Equipo1TiempoOcupacion,
             this.Equipo1FinOcupacion,
             this.Equipo2Estado,
             this.Equipo2TipoOcupacion,
+            this.Equipo2Alumno,
             this.Equipo2TiempoOcupacion,
             this.Equipo2FinOcupacion,
             this.Equipo3Estado,
             this.Equipo3TipoOcupacion,
+            this.Equipo3Alumno,
             this.Equipo3TiempoOcupacion,
             this.Equipo3FinOcupacion,
             this.Equipo4Estado,
             this.Equipo4TipoOcupacion,
+            this.Equipo4Alumno,
             this.Equipo4TiempoOcupacion,
             this.Equipo4FinOcupacion,
             this.Equipo5Estado,
             this.Equipo5TipoOcupacion,
+            this.Equipo5Alumno,
             this.Equipo5TiempoOcupacion,
             this.Equipo5FinOcupacion});
             this.dvgSim.Location = new System.Drawing.Point(12, 88);
@@ -352,168 +362,6 @@ namespace Simulacion.Final.App
             this.dvgSim.RowHeadersVisible = false;
             this.dvgSim.Size = new System.Drawing.Size(1035, 465);
             this.dvgSim.TabIndex = 25;
-            // 
-            // NumeroEvento
-            // 
-            this.NumeroEvento.HeaderText = "Número de Evento";
-            this.NumeroEvento.Name = "NumeroEvento";
-            this.NumeroEvento.ReadOnly = true;
-            // 
-            // TipoEvento
-            // 
-            this.TipoEvento.HeaderText = "Tipo de Evento";
-            this.TipoEvento.Name = "TipoEvento";
-            this.TipoEvento.ReadOnly = true;
-            // 
-            // Reloj
-            // 
-            this.Reloj.HeaderText = "Reloj";
-            this.Reloj.Name = "Reloj";
-            this.Reloj.ReadOnly = true;
-            // 
-            // LlegadaProximoAlumno
-            // 
-            this.LlegadaProximoAlumno.HeaderText = "Llegada del próximo Alumno";
-            this.LlegadaProximoAlumno.Name = "LlegadaProximoAlumno";
-            this.LlegadaProximoAlumno.ReadOnly = true;
-            // 
-            // LlegadaProximoMantenimiento
-            // 
-            this.LlegadaProximoMantenimiento.HeaderText = "Llegada del proximo Mantenimiento";
-            this.LlegadaProximoMantenimiento.Name = "LlegadaProximoMantenimiento";
-            this.LlegadaProximoMantenimiento.ReadOnly = true;
-            // 
-            // ColaAlumnos
-            // 
-            this.ColaAlumnos.HeaderText = "Cola de Alumnos";
-            this.ColaAlumnos.Name = "ColaAlumnos";
-            this.ColaAlumnos.ReadOnly = true;
-            // 
-            // ColaMantenimiento
-            // 
-            this.ColaMantenimiento.HeaderText = "Cola de Mantenimiento";
-            this.ColaMantenimiento.Name = "ColaMantenimiento";
-            this.ColaMantenimiento.ReadOnly = true;
-            // 
-            // Equipo1Estado
-            // 
-            this.Equipo1Estado.HeaderText = "Equipo 1: Estado";
-            this.Equipo1Estado.Name = "Equipo1Estado";
-            this.Equipo1Estado.ReadOnly = true;
-            // 
-            // Equipo1TipoOcupacion
-            // 
-            this.Equipo1TipoOcupacion.HeaderText = "Equipo 1: Tipo de Ocupacion";
-            this.Equipo1TipoOcupacion.Name = "Equipo1TipoOcupacion";
-            this.Equipo1TipoOcupacion.ReadOnly = true;
-            // 
-            // Equipo1TiempoOcupacion
-            // 
-            this.Equipo1TiempoOcupacion.HeaderText = "Equipo 1: Tiempo de Ocupación";
-            this.Equipo1TiempoOcupacion.Name = "Equipo1TiempoOcupacion";
-            this.Equipo1TiempoOcupacion.ReadOnly = true;
-            // 
-            // Equipo1FinOcupacion
-            // 
-            this.Equipo1FinOcupacion.HeaderText = "Equipo 1: Fin de Ocupacion";
-            this.Equipo1FinOcupacion.Name = "Equipo1FinOcupacion";
-            this.Equipo1FinOcupacion.ReadOnly = true;
-            // 
-            // Equipo2Estado
-            // 
-            this.Equipo2Estado.HeaderText = "Equipo 2: Estado";
-            this.Equipo2Estado.Name = "Equipo2Estado";
-            this.Equipo2Estado.ReadOnly = true;
-            // 
-            // Equipo2TipoOcupacion
-            // 
-            this.Equipo2TipoOcupacion.HeaderText = "Equipo 2: Tipo de Ocupacion";
-            this.Equipo2TipoOcupacion.Name = "Equipo2TipoOcupacion";
-            this.Equipo2TipoOcupacion.ReadOnly = true;
-            // 
-            // Equipo2TiempoOcupacion
-            // 
-            this.Equipo2TiempoOcupacion.HeaderText = "Equipo 2: Tiempo de Ocupación";
-            this.Equipo2TiempoOcupacion.Name = "Equipo2TiempoOcupacion";
-            this.Equipo2TiempoOcupacion.ReadOnly = true;
-            // 
-            // Equipo2FinOcupacion
-            // 
-            this.Equipo2FinOcupacion.HeaderText = "Equipo 2: Fin de Ocupacion";
-            this.Equipo2FinOcupacion.Name = "Equipo2FinOcupacion";
-            this.Equipo2FinOcupacion.ReadOnly = true;
-            // 
-            // Equipo3Estado
-            // 
-            this.Equipo3Estado.HeaderText = "Equipo 3: Estado";
-            this.Equipo3Estado.Name = "Equipo3Estado";
-            this.Equipo3Estado.ReadOnly = true;
-            // 
-            // Equipo3TipoOcupacion
-            // 
-            this.Equipo3TipoOcupacion.HeaderText = "Equipo 3: Tipo de Ocupacion";
-            this.Equipo3TipoOcupacion.Name = "Equipo3TipoOcupacion";
-            this.Equipo3TipoOcupacion.ReadOnly = true;
-            // 
-            // Equipo3TiempoOcupacion
-            // 
-            this.Equipo3TiempoOcupacion.HeaderText = "Equipo 3: Tiempo de Ocupación";
-            this.Equipo3TiempoOcupacion.Name = "Equipo3TiempoOcupacion";
-            this.Equipo3TiempoOcupacion.ReadOnly = true;
-            // 
-            // Equipo3FinOcupacion
-            // 
-            this.Equipo3FinOcupacion.HeaderText = "Equipo 3: Fin de Ocupacion";
-            this.Equipo3FinOcupacion.Name = "Equipo3FinOcupacion";
-            this.Equipo3FinOcupacion.ReadOnly = true;
-            // 
-            // Equipo4Estado
-            // 
-            this.Equipo4Estado.HeaderText = "Equipo 4: Estado";
-            this.Equipo4Estado.Name = "Equipo4Estado";
-            this.Equipo4Estado.ReadOnly = true;
-            // 
-            // Equipo4TipoOcupacion
-            // 
-            this.Equipo4TipoOcupacion.HeaderText = "Equipo 4: Tipo de Ocupacion";
-            this.Equipo4TipoOcupacion.Name = "Equipo4TipoOcupacion";
-            this.Equipo4TipoOcupacion.ReadOnly = true;
-            // 
-            // Equipo4TiempoOcupacion
-            // 
-            this.Equipo4TiempoOcupacion.HeaderText = "Equipo 4: Tiempo de Ocupación";
-            this.Equipo4TiempoOcupacion.Name = "Equipo4TiempoOcupacion";
-            this.Equipo4TiempoOcupacion.ReadOnly = true;
-            // 
-            // Equipo4FinOcupacion
-            // 
-            this.Equipo4FinOcupacion.HeaderText = "Equipo 4: Fin de Ocupacion";
-            this.Equipo4FinOcupacion.Name = "Equipo4FinOcupacion";
-            this.Equipo4FinOcupacion.ReadOnly = true;
-            // 
-            // Equipo5Estado
-            // 
-            this.Equipo5Estado.HeaderText = "Equipo 5: Estado";
-            this.Equipo5Estado.Name = "Equipo5Estado";
-            this.Equipo5Estado.ReadOnly = true;
-            // 
-            // Equipo5TipoOcupacion
-            // 
-            this.Equipo5TipoOcupacion.HeaderText = "Equipo 5: Tipo de Ocupacion";
-            this.Equipo5TipoOcupacion.Name = "Equipo5TipoOcupacion";
-            this.Equipo5TipoOcupacion.ReadOnly = true;
-            // 
-            // Equipo5TiempoOcupacion
-            // 
-            this.Equipo5TiempoOcupacion.HeaderText = "Equipo 5: Tiempo de Ocupación";
-            this.Equipo5TiempoOcupacion.Name = "Equipo5TiempoOcupacion";
-            this.Equipo5TiempoOcupacion.ReadOnly = true;
-            // 
-            // Equipo5FinOcupacion
-            // 
-            this.Equipo5FinOcupacion.HeaderText = "Equipo 5: Fin de Ocupacion";
-            this.Equipo5FinOcupacion.Name = "Equipo5FinOcupacion";
-            this.Equipo5FinOcupacion.ReadOnly = true;
             // 
             // label15
             // 
@@ -641,6 +489,198 @@ namespace Simulacion.Final.App
             this.lblPromedio5.TabIndex = 39;
             this.lblPromedio5.Text = "0";
             // 
+            // NumeroEvento
+            // 
+            this.NumeroEvento.HeaderText = "Número de Evento";
+            this.NumeroEvento.Name = "NumeroEvento";
+            this.NumeroEvento.ReadOnly = true;
+            // 
+            // TipoEvento
+            // 
+            this.TipoEvento.HeaderText = "Tipo de Evento";
+            this.TipoEvento.Name = "TipoEvento";
+            this.TipoEvento.ReadOnly = true;
+            // 
+            // Reloj
+            // 
+            this.Reloj.HeaderText = "Reloj";
+            this.Reloj.Name = "Reloj";
+            this.Reloj.ReadOnly = true;
+            // 
+            // LlegadaProximoAlumno
+            // 
+            this.LlegadaProximoAlumno.HeaderText = "Llegada del próximo Alumno";
+            this.LlegadaProximoAlumno.Name = "LlegadaProximoAlumno";
+            this.LlegadaProximoAlumno.ReadOnly = true;
+            // 
+            // LlegadaProximoMantenimiento
+            // 
+            this.LlegadaProximoMantenimiento.HeaderText = "Llegada del proximo Mantenimiento";
+            this.LlegadaProximoMantenimiento.Name = "LlegadaProximoMantenimiento";
+            this.LlegadaProximoMantenimiento.ReadOnly = true;
+            // 
+            // ColaAlumnos
+            // 
+            this.ColaAlumnos.HeaderText = "Cola de Alumnos";
+            this.ColaAlumnos.Name = "ColaAlumnos";
+            this.ColaAlumnos.ReadOnly = true;
+            // 
+            // ColaMantenimiento
+            // 
+            this.ColaMantenimiento.HeaderText = "Cola de Mantenimiento";
+            this.ColaMantenimiento.Name = "ColaMantenimiento";
+            this.ColaMantenimiento.ReadOnly = true;
+            // 
+            // Equipo1Estado
+            // 
+            this.Equipo1Estado.HeaderText = "Equipo 1: Estado";
+            this.Equipo1Estado.Name = "Equipo1Estado";
+            this.Equipo1Estado.ReadOnly = true;
+            // 
+            // Equipo1TipoOcupacion
+            // 
+            this.Equipo1TipoOcupacion.HeaderText = "Equipo 1: Tipo de Ocupacion";
+            this.Equipo1TipoOcupacion.Name = "Equipo1TipoOcupacion";
+            this.Equipo1TipoOcupacion.ReadOnly = true;
+            // 
+            // Equipo1Alumno
+            // 
+            this.Equipo1Alumno.HeaderText = "Equipo 1: Alumno";
+            this.Equipo1Alumno.Name = "Equipo1Alumno";
+            this.Equipo1Alumno.ReadOnly = true;
+            // 
+            // Equipo1TiempoOcupacion
+            // 
+            this.Equipo1TiempoOcupacion.HeaderText = "Equipo 1: Tiempo de Ocupación";
+            this.Equipo1TiempoOcupacion.Name = "Equipo1TiempoOcupacion";
+            this.Equipo1TiempoOcupacion.ReadOnly = true;
+            // 
+            // Equipo1FinOcupacion
+            // 
+            this.Equipo1FinOcupacion.HeaderText = "Equipo 1: Fin de Ocupacion";
+            this.Equipo1FinOcupacion.Name = "Equipo1FinOcupacion";
+            this.Equipo1FinOcupacion.ReadOnly = true;
+            // 
+            // Equipo2Estado
+            // 
+            this.Equipo2Estado.HeaderText = "Equipo 2: Estado";
+            this.Equipo2Estado.Name = "Equipo2Estado";
+            this.Equipo2Estado.ReadOnly = true;
+            // 
+            // Equipo2TipoOcupacion
+            // 
+            this.Equipo2TipoOcupacion.HeaderText = "Equipo 2: Tipo de Ocupacion";
+            this.Equipo2TipoOcupacion.Name = "Equipo2TipoOcupacion";
+            this.Equipo2TipoOcupacion.ReadOnly = true;
+            // 
+            // Equipo2Alumno
+            // 
+            this.Equipo2Alumno.HeaderText = "Equipo 2: Alumno";
+            this.Equipo2Alumno.Name = "Equipo2Alumno";
+            this.Equipo2Alumno.ReadOnly = true;
+            // 
+            // Equipo2TiempoOcupacion
+            // 
+            this.Equipo2TiempoOcupacion.HeaderText = "Equipo 2: Tiempo de Ocupación";
+            this.Equipo2TiempoOcupacion.Name = "Equipo2TiempoOcupacion";
+            this.Equipo2TiempoOcupacion.ReadOnly = true;
+            // 
+            // Equipo2FinOcupacion
+            // 
+            this.Equipo2FinOcupacion.HeaderText = "Equipo 2: Fin de Ocupacion";
+            this.Equipo2FinOcupacion.Name = "Equipo2FinOcupacion";
+            this.Equipo2FinOcupacion.ReadOnly = true;
+            // 
+            // Equipo3Estado
+            // 
+            this.Equipo3Estado.HeaderText = "Equipo 3: Estado";
+            this.Equipo3Estado.Name = "Equipo3Estado";
+            this.Equipo3Estado.ReadOnly = true;
+            // 
+            // Equipo3TipoOcupacion
+            // 
+            this.Equipo3TipoOcupacion.HeaderText = "Equipo 3: Tipo de Ocupacion";
+            this.Equipo3TipoOcupacion.Name = "Equipo3TipoOcupacion";
+            this.Equipo3TipoOcupacion.ReadOnly = true;
+            // 
+            // Equipo3Alumno
+            // 
+            this.Equipo3Alumno.HeaderText = "Equipo 3: Alumno";
+            this.Equipo3Alumno.Name = "Equipo3Alumno";
+            this.Equipo3Alumno.ReadOnly = true;
+            // 
+            // Equipo3TiempoOcupacion
+            // 
+            this.Equipo3TiempoOcupacion.HeaderText = "Equipo 3: Tiempo de Ocupación";
+            this.Equipo3TiempoOcupacion.Name = "Equipo3TiempoOcupacion";
+            this.Equipo3TiempoOcupacion.ReadOnly = true;
+            // 
+            // Equipo3FinOcupacion
+            // 
+            this.Equipo3FinOcupacion.HeaderText = "Equipo 3: Fin de Ocupacion";
+            this.Equipo3FinOcupacion.Name = "Equipo3FinOcupacion";
+            this.Equipo3FinOcupacion.ReadOnly = true;
+            // 
+            // Equipo4Estado
+            // 
+            this.Equipo4Estado.HeaderText = "Equipo 4: Estado";
+            this.Equipo4Estado.Name = "Equipo4Estado";
+            this.Equipo4Estado.ReadOnly = true;
+            // 
+            // Equipo4TipoOcupacion
+            // 
+            this.Equipo4TipoOcupacion.HeaderText = "Equipo 4: Tipo de Ocupacion";
+            this.Equipo4TipoOcupacion.Name = "Equipo4TipoOcupacion";
+            this.Equipo4TipoOcupacion.ReadOnly = true;
+            // 
+            // Equipo4Alumno
+            // 
+            this.Equipo4Alumno.HeaderText = "Equipo 4: Alumno";
+            this.Equipo4Alumno.Name = "Equipo4Alumno";
+            this.Equipo4Alumno.ReadOnly = true;
+            // 
+            // Equipo4TiempoOcupacion
+            // 
+            this.Equipo4TiempoOcupacion.HeaderText = "Equipo 4: Tiempo de Ocupación";
+            this.Equipo4TiempoOcupacion.Name = "Equipo4TiempoOcupacion";
+            this.Equipo4TiempoOcupacion.ReadOnly = true;
+            // 
+            // Equipo4FinOcupacion
+            // 
+            this.Equipo4FinOcupacion.HeaderText = "Equipo 4: Fin de Ocupacion";
+            this.Equipo4FinOcupacion.Name = "Equipo4FinOcupacion";
+            this.Equipo4FinOcupacion.ReadOnly = true;
+            // 
+            // Equipo5Estado
+            // 
+            this.Equipo5Estado.HeaderText = "Equipo 5: Estado";
+            this.Equipo5Estado.Name = "Equipo5Estado";
+            this.Equipo5Estado.ReadOnly = true;
+            // 
+            // Equipo5TipoOcupacion
+            // 
+            this.Equipo5TipoOcupacion.HeaderText = "Equipo 5: Tipo de Ocupacion";
+            this.Equipo5TipoOcupacion.Name = "Equipo5TipoOcupacion";
+            this.Equipo5TipoOcupacion.ReadOnly = true;
+            // 
+            // Equipo5Alumno
+            // 
+            this.Equipo5Alumno.HeaderText = "Equipo 5: Alumno";
+            this.Equipo5Alumno.Name = "Equipo5Alumno";
+            this.Equipo5Alumno.ReadOnly = true;
+            // 
+            // Equipo5TiempoOcupacion
+            // 
+            this.Equipo5TiempoOcupacion.HeaderText = "Equipo 5: Tiempo de Ocupación";
+            this.Equipo5TiempoOcupacion.Name = "Equipo5TiempoOcupacion";
+            this.Equipo5TiempoOcupacion.ReadOnly = true;
+            // 
+            // Equipo5FinOcupacion
+            // 
+            this.Equipo5FinOcupacion.HeaderText = "Equipo 5: Fin de Ocupacion";
+            this.Equipo5FinOcupacion.Name = "Equipo5FinOcupacion";
+            this.Equipo5FinOcupacion.ReadOnly = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -723,33 +763,6 @@ namespace Simulacion.Final.App
         private System.Windows.Forms.TextBox txtHorasSimulacion;
         private System.Windows.Forms.Button btnSimular;
         private System.Windows.Forms.DataGridView dvgSim;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroEvento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Reloj;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoAlumno;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoMantenimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColaAlumnos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColaMantenimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1TipoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1TiempoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1FinOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2TipoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2TiempoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2FinOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3TipoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3TiempoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3FinOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4TipoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4TiempoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4FinOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5Estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5TipoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5TiempoOcupacion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5FinOcupacion;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
@@ -764,6 +777,38 @@ namespace Simulacion.Final.App
         private System.Windows.Forms.Label lblPromedio3;
         private System.Windows.Forms.Label lblPromedio4;
         private System.Windows.Forms.Label lblPromedio5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NumeroEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoEvento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Reloj;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoAlumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoMantenimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColaAlumnos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColaMantenimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1TipoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1Alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1TiempoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1FinOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2TipoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2Alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2TiempoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo2FinOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3TipoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3Alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3TiempoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo3FinOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4TipoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4Alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4TiempoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo4FinOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5TipoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5Alumno;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5TiempoOcupacion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5FinOcupacion;
     }
 }
 

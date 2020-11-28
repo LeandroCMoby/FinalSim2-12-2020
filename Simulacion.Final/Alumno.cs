@@ -8,9 +8,9 @@ namespace Simulacion.Final
 {
     public class Alumno
     {
-        private int id { get; set; }
-        private int TiempoLlegada { get; set; }
-
+        public int id { get; set; }
+        public int TiempoLlegada { get; set; }
+        
         public Alumno()
         {
 

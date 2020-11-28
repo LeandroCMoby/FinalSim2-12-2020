@@ -3,31 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Simulacion.Utilidades.Distribuciones;
 
 namespace Simulacion.Final
 {
     public class Equipo : ICloneable
     {
         public String Nombre { get; set; }
+        public int TiempoEjecucion { get; set; }
         public int TiempoFinAtencion { get; set; }
         public bool Mantenido { get; set; }
         public bool Libre { get; set; }
         public Evento EventoFin { get; set; }
         public int CantidadInscripciones { get; set; }
+        public Ocupacion TipoOcupacion { get; set; }
+        public Alumno alumno { get; set; }
+        public Condiciones condicionesIniciales { get; set; };
+        
 
         public Equipo()
         {
 
         }
 
-        public Equipo(string nombre, Evento eventoFin)
+        public Equipo(string nombre, Evento eventoFin , Condiciones condiciones)
         {
+            condicionesIniciales = (Condiciones)condicionesIniciales.Clone();
             Nombre = nombre;
             TiempoFinAtencion = 0;
             Libre = true;
             Mantenido = false;
             EventoFin = eventoFin;
             CantidadInscripciones = 0;
+            alumno = null;
         }
 
         public object Clone()
@@ -39,7 +47,25 @@ namespace Simulacion.Final
             equipo.Mantenido = Mantenido;
             equipo.Nombre = Nombre;
             equipo.TiempoFinAtencion = TiempoFinAtencion;
+            equipo.TipoOcupacion = TipoOcupacion;
+            equipo.alumno = alumno;
+            equipo.TiempoEjecucion = TiempoEjecucion;
+            equipo.condicionesIniciales = (Condiciones) condicionesIniciales.Clone();
             return equipo;
+        }
+
+        public void ObtenerTiempoAtencion()
+        {
+            if(TipoOcupacion == Ocupacion.Inscripcion)
+            {
+                DistribucionUniforme distribucion = new DistribucionUniforme(condicionesIniciales.AInscripcion*60, condicionesIniciales.BInscripcion*60);
+                TiempoEjecucion = (int)distribucion.ObtenerVariableAleatoria();
+            }
+            if(TipoOcupacion == Ocupacion.Mantenimiento)
+            {
+                DistribucionNormal distribucion = new DistribucionNormal(condicionesIniciales.MediaMantenimiento, Math.Pow(condicionesIniciales.DesvMantenimiento, 2.0));
+                TiempoEjecucion = (int)distribucion.ObtenerVariableAleatoria();
+            }
         }
     }
 }
