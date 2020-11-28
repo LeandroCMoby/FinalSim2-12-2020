@@ -122,6 +122,7 @@ namespace Simulacion.Final.App
             string LlegadaProximoMantenimiento = StringifyHora(estado.tiempoLlegadaProximoAlumno);
             string colaAlumnos = estado.colaAlumnos.Count.ToString();
             string colaMantenimiento = estado.ColaMantenimientos.Count.ToString();
+            string regreso = StringifyHora(estado.colaAbandono.First().TiempoRegreso);
 
             #region Equipo1
             string e1Estado = estado.equipo1.Libre ? "Libre" : "Ocupado";
@@ -217,7 +218,7 @@ namespace Simulacion.Final.App
             }
             #endregion
 
-            dvgSim.Rows.Add(NumeroEvento, TipoEvento, reloj, LlegadaProximoAlumno, LlegadaProximoMantenimiento, colaAlumnos, colaMantenimiento,
+            dvgSim.Rows.Add(NumeroEvento, TipoEvento, reloj, LlegadaProximoAlumno, LlegadaProximoMantenimiento, regreso, colaAlumnos, colaMantenimiento,
                 e1Estado, e1TipoOcupacion, e1Alumno, e1TiempoOcupacion, e1FinOcupacion,
                 e2Estado, e2TipoOcupacion, e2Alumno, e2TiempoOcupacion, e2FinOcupacion,
                 e3Estado, e3TipoOcupacion, e3Alumno, e3TiempoOcupacion, e3FinOcupacion,

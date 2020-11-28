@@ -18,7 +18,8 @@ namespace Simulacion.Final
         public int CantidadInscripciones { get; set; }
         public Ocupacion TipoOcupacion { get; set; }
         public Alumno alumno { get; set; }
-        public Condiciones condicionesIniciales { get; set; };
+        public Condiciones condicionesIniciales { get; set; }
+        public Mantenimiento mantenimiento { get; set; }
         
 
         public Equipo()
@@ -36,6 +37,7 @@ namespace Simulacion.Final
             EventoFin = eventoFin;
             CantidadInscripciones = 0;
             alumno = null;
+            mantenimiento = null;
         }
 
         public object Clone()
@@ -51,6 +53,7 @@ namespace Simulacion.Final
             equipo.alumno = alumno;
             equipo.TiempoEjecucion = TiempoEjecucion;
             equipo.condicionesIniciales = (Condiciones) condicionesIniciales.Clone();
+            equipo.mantenimiento = (Mantenimiento)mantenimiento.Clone();
             return equipo;
         }
 

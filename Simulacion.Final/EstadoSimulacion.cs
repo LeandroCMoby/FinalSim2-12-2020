@@ -23,6 +23,7 @@ namespace Simulacion.Final
         public int numeroEvento { get; set; }
         public int numeroAlumno { get; set; }
         public List<Alumno> colaAlumnos { get; set; }
+        public List<Alumno> colaAbandono { get; set; }
         public List<Mantenimiento> ColaMantenimientos { get; set; }
         public int AlumnosAbandono { get; set; }
         public double Inscripciones1 { get; set; }
@@ -52,9 +53,9 @@ namespace Simulacion.Final
             numeroEvento = 0;
             numeroAlumno = 1;
 
-            colaAlumnos = new List<Alumno>;
-            ColaMantenimientos = new List<Mantenimiento>;
-
+            colaAlumnos = new List<Alumno>();
+            ColaMantenimientos = new List<Mantenimiento>();
+            colaAbandono = new List<Alumno>();
             AlumnosAbandono = 0;
             Inscripciones1 = 0.0;
             Inscripciones2 = 0.0;
@@ -118,6 +119,15 @@ namespace Simulacion.Final
                     }
 
                 }
+                //Con el siguiente codigo, compruebo el regreso de un alumno que habia abandonado la fila
+                if (colaAbandono.First() != null && colaAbandono.First().TiempoRegreso < condicionesIniciales.HorasSimulacion * 3600)
+                {
+                    if(tiempoProximoEvento > colaAbandono.First().TiempoRegreso)
+                    {
+                        tiempoProximoEvento = colaAbandono.First().TiempoRegreso;
+                        proximoEvento = Evento.LlegadaAlumno;
+                    }
+                }
             }
             else
             {
@@ -160,6 +170,7 @@ namespace Simulacion.Final
             EstadoSimulacion estado = new EstadoSimulacion();
             estado.AlumnosAbandono = AlumnosAbandono;
             estado.colaAlumnos = colaAlumnos;
+            estado.colaAbandono = colaAbandono;
             estado.ColaMantenimientos = ColaMantenimientos;
             estado.condicionesIniciales = condicionesIniciales;
             estado.equipo1 = (Equipo)equipo1.Clone();

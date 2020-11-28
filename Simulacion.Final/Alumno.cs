@@ -9,17 +9,17 @@ namespace Simulacion.Final
     public class Alumno
     {
         public int id { get; set; }
-        public int TiempoLlegada { get; set; }
+        public int TiempoRegreso { get; set; }
         
         public Alumno()
         {
 
         }
 
-        public Alumno(Condiciones condiciones, int tiempo, int acumulador)
+        public Alumno(Condiciones condiciones, int acumulador)
         {
             id = acumulador + 1;
-            TiempoLlegada = tiempo;
+            TiempoRegreso = 0;
 
         }
 

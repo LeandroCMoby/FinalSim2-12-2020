@@ -74,6 +74,7 @@ namespace Simulacion.Final.App
             this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LlegadaProximoAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LlegadaProximoMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RegresoAlumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColaAlumnos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColaMantenimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Equipo1Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -329,6 +330,7 @@ namespace Simulacion.Final.App
             this.Reloj,
             this.LlegadaProximoAlumno,
             this.LlegadaProximoMantenimiento,
+            this.RegresoAlumno,
             this.ColaAlumnos,
             this.ColaMantenimiento,
             this.Equipo1Estado,
@@ -518,6 +520,12 @@ namespace Simulacion.Final.App
             this.LlegadaProximoMantenimiento.HeaderText = "Llegada del proximo Mantenimiento";
             this.LlegadaProximoMantenimiento.Name = "LlegadaProximoMantenimiento";
             this.LlegadaProximoMantenimiento.ReadOnly = true;
+            // 
+            // RegresoAlumno
+            // 
+            this.RegresoAlumno.HeaderText = "Regreso de Alumno";
+            this.RegresoAlumno.Name = "RegresoAlumno";
+            this.RegresoAlumno.ReadOnly = true;
             // 
             // ColaAlumnos
             // 
@@ -782,6 +790,7 @@ namespace Simulacion.Final.App
         private System.Windows.Forms.DataGridViewTextBoxColumn Reloj;
         private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoAlumno;
         private System.Windows.Forms.DataGridViewTextBoxColumn LlegadaProximoMantenimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RegresoAlumno;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColaAlumnos;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColaMantenimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Equipo1Estado;
