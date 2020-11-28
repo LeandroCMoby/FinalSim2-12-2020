@@ -4,10 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulacion.Final", "Simulacion.Final.csproj", "{C39DD952-5742-4F16-964C-256CFF29C9B7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{81E7597D-7102-42D3-A283-E05862DD1AFB} = {81E7597D-7102-42D3-A283-E05862DD1AFB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulacion.Utilidades", "..\Simulacion.Utilidades\Simulacion.Utilidades.csproj", "{81E7597D-7102-42D3-A283-E05862DD1AFB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulacion.Final.App", "..\Simulacion.Final.App\Simulacion.Final.App.csproj", "{48BD3A6A-F879-4D49-9953-43DD8EADB4AD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C39DD952-5742-4F16-964C-256CFF29C9B7} = {C39DD952-5742-4F16-964C-256CFF29C9B7}
+		{81E7597D-7102-42D3-A283-E05862DD1AFB} = {81E7597D-7102-42D3-A283-E05862DD1AFB}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

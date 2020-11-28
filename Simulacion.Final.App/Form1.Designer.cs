@@ -313,6 +313,7 @@ namespace Simulacion.Final.App
             this.btnSimular.TabIndex = 24;
             this.btnSimular.Text = "Generar Simulación";
             this.btnSimular.UseVisualStyleBackColor = true;
+            this.btnSimular.Click += new System.EventHandler(this.btnSimular_Click);
             // 
             // dvgSim
             // 
