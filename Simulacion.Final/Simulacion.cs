@@ -64,7 +64,7 @@ namespace Simulacion.Final
                    estadoActual.equipo5,
                 };
 
-                Equipo equipoAux = equipos.FindAll(x => x.Mantenido = false).First();
+                Equipo equipoAux = equipos.FindAll(x => x.Mantenido == false).First();
                 if(equipoAux == null)
                 {
                     estadoActual.equipo1.Mantenido = false;
@@ -75,7 +75,21 @@ namespace Simulacion.Final
                 }
                 else
                 {
-                    estadoActual.ColaMantenimientos.Add(equipo.mantenimiento);
+                    Equipo equiposSinMantener = equipos.FindAll(x => x.Mantenido == false & x.Libre == true).First();
+
+                    if(equiposSinMantener == null)
+                    {
+                        estadoActual.ColaMantenimientos.Add(equipo.mantenimiento);
+                    }
+                    else
+                    {
+                        equiposSinMantener.Libre = false;
+                        equiposSinMantener.TipoOcupacion = Ocupacion.Mantenimiento;
+                        equiposSinMantener.ObtenerTiempoAtencion();
+                        equiposSinMantener.TiempoFinAtencion = equiposSinMantener.TiempoEjecucion + estadoActual.tiempo;
+                        equiposSinMantener.Mantenido = true;
+                        equiposSinMantener.mantenimiento = equipo.mantenimiento;
+                    }
                 }
                 equipo.mantenimiento = null;
             }
@@ -111,7 +125,7 @@ namespace Simulacion.Final
 
         private void LlegoMantenimiento(Condiciones condiciones)
         {
-            throw new NotImplementedException();
+            
         }
 
         private void LlegoAlumno(Condiciones condiciones)
