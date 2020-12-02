@@ -19,6 +19,8 @@ namespace Simulacion.Final
         public int DesvMantenimiento { get; set; }
         public int MaxAlumnosCola { get; set; }
         public int HorasSimulacion { get; set; }
+        public int HorasInicio { get; set; }
+        public int CantidadHoras { get; set; }
 
         public object Clone()
         {
@@ -33,6 +35,8 @@ namespace Simulacion.Final
             condiciones.MaxAlumnosCola = MaxAlumnosCola;
             condiciones.MediaLlegadaAlumno = MediaLlegadaAlumno;
             condiciones.MediaMantenimiento = MediaMantenimiento;
+            condiciones.HorasInicio = HorasInicio;
+            condiciones.CantidadHoras = CantidadHoras;
             return condiciones;
         }
     }

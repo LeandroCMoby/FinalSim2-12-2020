@@ -34,7 +34,9 @@ namespace Simulacion.Final.App
                 MediaMantenimiento = Convert.ToInt32(txtMediaMantenimiento.Text),
                 DesvMantenimiento = Convert.ToInt32(txtDesvMantenimiento.Text),
                 HorasSimulacion = Convert.ToInt32(txtHorasSimulacion.Text),
-                MaxAlumnosCola = Convert.ToInt32(txtMaxAlumnos.Text)
+                MaxAlumnosCola = Convert.ToInt32(txtMaxAlumnos.Text),
+                HorasInicio = Convert.ToInt32(txtHoraInicial.Text)*3600,
+                CantidadHoras = Convert.ToInt32(txtCantHoras.Text)*3600
             };
 
             return condiciones;
@@ -176,6 +178,14 @@ namespace Simulacion.Final.App
             string e1TiempoOcupacion = "-";
             string e1FinOcupacion = "-";
             string e1Alumno = "-";
+
+            int cantAbandono = estado.AlumnosAbandono;
+            int contadorE1 = estado.equipo1.CantidadInscripciones;
+            int contadorE2 = estado.equipo2.CantidadInscripciones;
+            int contadorE3 = estado.equipo3.CantidadInscripciones;
+            int contadorE4 = estado.equipo4.CantidadInscripciones;
+            int contadorE5 = estado.equipo5.CantidadInscripciones;
+
             if (estado.equipo1.Libre == false)
             {
                 e1TipoOcupacion = estado.equipo1.TipoOcupacion;
@@ -269,7 +279,8 @@ namespace Simulacion.Final.App
                 e2Estado, e2TipoOcupacion, e2Alumno, e2TiempoOcupacion, e2FinOcupacion,
                 e3Estado, e3TipoOcupacion, e3Alumno, e3TiempoOcupacion, e3FinOcupacion,
                 e4Estado, e4TipoOcupacion, e4Alumno, e4TiempoOcupacion, e4FinOcupacion,
-                e5Estado, e5TipoOcupacion, e5Alumno, e5TiempoOcupacion, e5FinOcupacion);
+                e5Estado, e5TipoOcupacion, e5Alumno, e5TiempoOcupacion, e5FinOcupacion,
+                cantAbandono, contadorE1, contadorE2, contadorE3, contadorE4, contadorE5);
         }
 
         private string StringifyHora(int tiempo)
@@ -302,6 +313,104 @@ namespace Simulacion.Final.App
             string resultado = cifra.ToString("#,##0.00", nfi);
 
             return resultado;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dvgSim.Rows.Clear();
+            LimpiarLabels();
+
+            if (Validar())
+            {
+                MessageBox.Show("Los parámetros ingresados tienen que ser mayo a cero, y los maximos deben ser mayor que los minimos");
+            }
+            else
+            {
+                Condiciones condiciones = ObtenerCondiciones();
+                Simulacion simulacion = new Simulacion();
+                EstadoSimulacion estado;
+                bool condicion;
+                progresBar.Visible = true;
+                simulacion.estadoAnterior = new EstadoSimulacion(condiciones);
+                AgregarFila(simulacion.estadoAnterior);
+                do
+                {
+
+                    estado = simulacion.GenerarSimulacion(condiciones);
+
+                    bool CambioHora = Math.Floor(((double)estado.tiempoProximoEvento / 3600)) > Math.Floor(((double)estado.tiempo / 3600));
+                    if (CambioHora)
+                    {
+                        if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10)
+                        {
+                            progresBar.Value = 10;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 2)
+                        {
+                            progresBar.Value = 20;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 3)
+                        {
+                            progresBar.Value = 30;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 4)
+                        {
+                            progresBar.Value = 40;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 5)
+                        {
+                            progresBar.Value = 50;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 6)
+                        {
+                            progresBar.Value = 60;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 7)
+                        {
+                            progresBar.Value = 70;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 8)
+                        {
+                            progresBar.Value = 80;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 9)
+                        {
+                            progresBar.Value = 90;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 10)
+                        {
+                            progresBar.Value = 100;
+                        }
+
+                    }
+
+                    if(estado.tiempo > condiciones.HorasInicio && estado.tiempo < (condiciones.HorasInicio + condiciones.CantidadHoras))
+                    {
+                        AgregarFila(estado);
+                    }
+                    
+
+                    bool condicion1 = !estado.equipo1.Libre || !estado.equipo2.Libre || !estado.equipo3.Libre || !estado.equipo4.Libre || !estado.equipo5.Libre;
+                    bool condicion2 = estado.colaAlumnos.Count > 0;
+                    bool condicion4 = estado.eventoActual != Evento.Final;
+
+                    condicion = condicion1 || condicion2 || condicion4;
+                }
+                while (condicion);
+                AgregarFila(estado);
+                double porcentajeAbandono = (double)estado.AlumnosAbandono / (double)estado.numeroAlumno * 100;
+                estado.PromedioInscripcionesSistema = estado.PromedioInscripciones1 + estado.PromedioInscripciones2 + estado.PromedioInscripciones3 + estado.PromedioInscripciones4 + estado.PromedioInscripciones5;
+                // lblPorcentajeAbandono.Text = porcentajeAbandono.ToString() + "%";
+                lblPorcentajeAbandono.Text = StringifyCifra(Math.Round(porcentajeAbandono, 2)) + " %";
+                lblPromedio1.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones1, 2));
+                lblPromedio2.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones2, 2));
+                lblPromedio3.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones3, 2));
+                lblPromedio4.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones4, 2));
+                lblPromedio5.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones5, 2));
+                lblPromedioSistema.Text = StringifyCifra(Math.Round(estado.PromedioInscripcionesSistema, 2));
+
+                progresBar.Visible = false;
+            }
         }
     }
 }
