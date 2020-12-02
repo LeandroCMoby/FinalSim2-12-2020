@@ -39,19 +39,19 @@ namespace Simulacion.Final
         public double PromedioInscripcionesSistema { get; set; }
         public Condiciones condicionesIniciales { get; set; }
 
-        public EstadoSimulacion()
+        public EstadoSimulacion(Condiciones condiciones)
         {
             tiempo = 0;
             eventoActual = Evento.Inicio;
 
-            equipo1 = new Equipo("Equipo1", Evento.FinAtencionEquipo1, condicionesIniciales);
-            equipo2 = new Equipo("Equipo2", Evento.FinAtencionEquipo2, condicionesIniciales);
-            equipo3 = new Equipo("Equipo3", Evento.FinAtencionEquipo3, condicionesIniciales);
-            equipo4 = new Equipo("Equipo4", Evento.FinAtencionEquipo4, condicionesIniciales);
-            equipo5 = new Equipo("Equipo5", Evento.FinAtencionEquipo5, condicionesIniciales);
+            equipo1 = new Equipo("Equipo1", Evento.FinAtencionEquipo1, condiciones);
+            equipo2 = new Equipo("Equipo2", Evento.FinAtencionEquipo2, condiciones);
+            equipo3 = new Equipo("Equipo3", Evento.FinAtencionEquipo3, condiciones);
+            equipo4 = new Equipo("Equipo4", Evento.FinAtencionEquipo4, condiciones);
+            equipo5 = new Equipo("Equipo5", Evento.FinAtencionEquipo5, condiciones);
 
             numeroEvento = 0;
-            numeroAlumno = 1;
+            numeroAlumno = 0;
 
             colaAlumnos = new List<Alumno>();
             ColaMantenimientos = new List<Mantenimiento>();
@@ -69,15 +69,27 @@ namespace Simulacion.Final
             PromedioInscripciones5 = 0.0;
             PromedioInscripcionesSistema = 0.0;
 
+            condicionesIniciales = condiciones;
+            ObtenerTiempoLlegadaProximoMantenimiento(tiempo);
             ObtenerTiempoLlegadaProximoAlumno(tiempo);
-            tiempoProximoEvento = tiempoLlegadaProximoAlumno;
-            proximoEvento = Evento.LlegadaAlumno;
+            if(tiempoLlegadaProximoAlumno < tiempoLlegadaProximoMantenimiento)
+            {
+                tiempoProximoEvento = tiempoLlegadaProximoAlumno;
+                proximoEvento = Evento.LlegadaAlumno;
+            }
+            else
+            {
+                tiempoProximoEvento = tiempoLlegadaProximoMantenimiento;
+                proximoEvento = Evento.LlegadaMantenimiento;
+            }
+           
 
         }
 
         public void ObtenerTiempoLlegadaProximoAlumno(int tiempo)
         {
-            double lambda = (1 / condicionesIniciales.MediaLlegadaAlumno);
+            double lambda = 1.0 / (condicionesIniciales.MediaLlegadaAlumno );
+            //double lambda = 1.0 / 2.0;
             DistribucionExponencialNegativa distribucion = new DistribucionExponencialNegativa(lambda);
             tiempoLlegadaProximoAlumno = (int)(distribucion.ObtenerVariableAleatoria());
             tiempoLlegadaProximoAlumno += tiempo;
@@ -95,7 +107,7 @@ namespace Simulacion.Final
             };
 
             Equipo proximoEquipo;
-            proximoEquipo = ListaEquipos.FindAll(x => x.Libre).OrderBy(x => x.TiempoFinAtencion).FirstOrDefault();
+            proximoEquipo = ListaEquipos.FindAll(x => !x.Libre ).OrderBy(x => x.TiempoFinAtencion).FirstOrDefault();
 
             if(proximoEquipo != null)
             {
@@ -120,7 +132,7 @@ namespace Simulacion.Final
 
                 }
                 //Con el siguiente codigo, compruebo el regreso de un alumno que habia abandonado la fila
-                if (colaAbandono.First() != null && colaAbandono.First().TiempoRegreso < condicionesIniciales.HorasSimulacion * 3600)
+                if (colaAbandono.Count > 0 && colaAbandono.First().TiempoRegreso < condicionesIniciales.HorasSimulacion * 3600)
                 {
                     if(tiempoProximoEvento > colaAbandono.First().TiempoRegreso)
                     {
@@ -131,6 +143,7 @@ namespace Simulacion.Final
             }
             else
             {
+                tiempoProximoEvento = (condicionesIniciales.HorasSimulacion+1) * 3600;
                 if (tiempoLlegadaProximoAlumno < condicionesIniciales.HorasSimulacion * 3600)
                 {
                     if (tiempoProximoEvento > tiempoLlegadaProximoAlumno)
@@ -148,7 +161,15 @@ namespace Simulacion.Final
                     }
 
                 }
-                if(tiempoLlegadaProximoAlumno > condicionesIniciales.HorasSimulacion*3600 && tiempoLlegadaProximoMantenimiento > condicionesIniciales.HorasSimulacion * 3600)
+                if (colaAbandono.Count > 0 && colaAbandono.First().TiempoRegreso < condicionesIniciales.HorasSimulacion * 3600)
+                {
+                    if (tiempoProximoEvento > colaAbandono.First().TiempoRegreso)
+                    {
+                        tiempoProximoEvento = colaAbandono.First().TiempoRegreso;
+                        proximoEvento = Evento.LlegadaAlumno;
+                    }
+                }
+                if (tiempoLlegadaProximoAlumno > condicionesIniciales.HorasSimulacion*3600 && tiempoLlegadaProximoMantenimiento > condicionesIniciales.HorasSimulacion * 3600)
                 {
                     proximoEvento = Evento.Final;
                     tiempoProximoEvento = tiempo;
@@ -167,12 +188,11 @@ namespace Simulacion.Final
 
         public object Clone()
         {
-            EstadoSimulacion estado = new EstadoSimulacion();
+            EstadoSimulacion estado = new EstadoSimulacion(condicionesIniciales);
             estado.AlumnosAbandono = AlumnosAbandono;
             estado.colaAlumnos = colaAlumnos;
             estado.colaAbandono = colaAbandono;
             estado.ColaMantenimientos = ColaMantenimientos;
-            estado.condicionesIniciales = condicionesIniciales;
             estado.equipo1 = (Equipo)equipo1.Clone();
             estado.equipo2 = (Equipo)equipo2.Clone();
             estado.equipo3 = (Equipo)equipo3.Clone();
@@ -198,6 +218,24 @@ namespace Simulacion.Final
             estado.tiempoLlegadaProximoMantenimiento = tiempoLlegadaProximoMantenimiento;
             estado.tiempoProximoEvento = tiempoProximoEvento;
             return estado;
+        }
+    
+        public void CalcularPromedios()
+        {
+            int hora = (int)Math.Floor((double) (tiempo / 3600));
+            PromedioInscripciones1 = (1.0 / (double)hora) * (((double)hora - 1.0) * PromedioInscripciones1 + (double)equipo1.CantidadInscripciones);
+            PromedioInscripciones2 = (1.0 / (double)hora) * (((double)hora - 1.0) * PromedioInscripciones2 + (double)equipo2.CantidadInscripciones);
+            PromedioInscripciones3 = (1.0 / (double)hora) * (((double)hora - 1.0) * PromedioInscripciones3 + (double)equipo3.CantidadInscripciones);
+            PromedioInscripciones4 = (1.0 / (double)hora) * (((double)hora - 1.0) * PromedioInscripciones4 + (double)equipo4.CantidadInscripciones);
+            PromedioInscripciones5 = (1.0 / (double)hora) * (((double)hora - 1.0) * PromedioInscripciones5 + (double)equipo5.CantidadInscripciones);
+            PromedioInscripcionesSistema = PromedioInscripciones1 + PromedioInscripciones2 + PromedioInscripciones3 + PromedioInscripciones4 + PromedioInscripciones5;
+
+            equipo1.CantidadInscripciones = 0;
+            equipo2.CantidadInscripciones = 0;
+            equipo3.CantidadInscripciones = 0;
+            equipo4.CantidadInscripciones = 0;
+            equipo5.CantidadInscripciones = 0;
+
         }
     }
 }

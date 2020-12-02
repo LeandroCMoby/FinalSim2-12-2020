@@ -29,7 +29,7 @@ namespace Simulacion.Final
 
         public Equipo(string nombre, Evento eventoFin , Condiciones condiciones)
         {
-            condicionesIniciales = (Condiciones)condicionesIniciales.Clone();
+            condicionesIniciales = condiciones;
             Nombre = nombre;
             TiempoFinAtencion = 0;
             Libre = true;
@@ -52,8 +52,8 @@ namespace Simulacion.Final
             equipo.TipoOcupacion = TipoOcupacion;
             equipo.alumno = alumno;
             equipo.TiempoEjecucion = TiempoEjecucion;
-            equipo.condicionesIniciales = (Condiciones) condicionesIniciales.Clone();
-            equipo.mantenimiento = (Mantenimiento)mantenimiento.Clone();
+            equipo.condicionesIniciales = condicionesIniciales;
+            equipo.mantenimiento = mantenimiento;
             return equipo;
         }
 
@@ -61,7 +61,7 @@ namespace Simulacion.Final
         {
             if(TipoOcupacion == Ocupacion.Inscripcion)
             {
-                DistribucionUniforme distribucion = new DistribucionUniforme(condicionesIniciales.AInscripcion*60, condicionesIniciales.BInscripcion*60);
+                DistribucionUniforme distribucion = new DistribucionUniforme(condicionesIniciales.AInscripcion, condicionesIniciales.BInscripcion);
                 TiempoEjecucion = (int)distribucion.ObtenerVariableAleatoria();
             }
             if(TipoOcupacion == Ocupacion.Mantenimiento)

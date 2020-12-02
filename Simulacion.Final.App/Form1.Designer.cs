@@ -55,20 +55,6 @@ namespace Simulacion.Final.App
             this.txtHorasSimulacion = new System.Windows.Forms.TextBox();
             this.btnSimular = new System.Windows.Forms.Button();
             this.dvgSim = new System.Windows.Forms.DataGridView();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.lblPorcentajeAbandono = new System.Windows.Forms.Label();
-            this.lblPromedioSistema = new System.Windows.Forms.Label();
-            this.lblPromedio1 = new System.Windows.Forms.Label();
-            this.lblPromedio2 = new System.Windows.Forms.Label();
-            this.lblPromedio3 = new System.Windows.Forms.Label();
-            this.lblPromedio4 = new System.Windows.Forms.Label();
-            this.lblPromedio5 = new System.Windows.Forms.Label();
             this.NumeroEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TipoEvento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reloj = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -102,6 +88,21 @@ namespace Simulacion.Final.App
             this.Equipo5Alumno = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Equipo5TiempoOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Equipo5FinOcupacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.lblPorcentajeAbandono = new System.Windows.Forms.Label();
+            this.lblPromedioSistema = new System.Windows.Forms.Label();
+            this.lblPromedio1 = new System.Windows.Forms.Label();
+            this.lblPromedio2 = new System.Windows.Forms.Label();
+            this.lblPromedio3 = new System.Windows.Forms.Label();
+            this.lblPromedio4 = new System.Windows.Forms.Label();
+            this.lblPromedio5 = new System.Windows.Forms.Label();
+            this.progresBar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.dvgSim)).BeginInit();
             this.SuspendLayout();
             // 
@@ -365,132 +366,6 @@ namespace Simulacion.Final.App
             this.dvgSim.Size = new System.Drawing.Size(1035, 465);
             this.dvgSim.TabIndex = 25;
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(12, 566);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(228, 13);
-            this.label15.TabIndex = 26;
-            this.label15.Text = "Porcentaje de Alumnos que abandonan la cola";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(12, 588);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(214, 13);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "Inscripciones promedio del sistema por Hora";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(319, 566);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(221, 13);
-            this.label17.TabIndex = 28;
-            this.label17.Text = "Inscripciones promedio del Equipo 1 por Hora";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(319, 588);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(221, 13);
-            this.label18.TabIndex = 29;
-            this.label18.Text = "Inscripciones promedio del Equipo 2 por Hora";
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(626, 566);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(221, 13);
-            this.label19.TabIndex = 30;
-            this.label19.Text = "Inscripciones promedio del Equipo 4 por Hora";
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(626, 588);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(221, 13);
-            this.label20.TabIndex = 31;
-            this.label20.Text = "Inscripciones promedio del Equipo 5 por Hora";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(319, 611);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(221, 13);
-            this.label21.TabIndex = 32;
-            this.label21.Text = "Inscripciones promedio del Equipo 3 por Hora";
-            // 
-            // lblPorcentajeAbandono
-            // 
-            this.lblPorcentajeAbandono.AutoSize = true;
-            this.lblPorcentajeAbandono.Location = new System.Drawing.Point(246, 566);
-            this.lblPorcentajeAbandono.Name = "lblPorcentajeAbandono";
-            this.lblPorcentajeAbandono.Size = new System.Drawing.Size(13, 13);
-            this.lblPorcentajeAbandono.TabIndex = 33;
-            this.lblPorcentajeAbandono.Text = "0";
-            // 
-            // lblPromedioSistema
-            // 
-            this.lblPromedioSistema.AutoSize = true;
-            this.lblPromedioSistema.Location = new System.Drawing.Point(246, 588);
-            this.lblPromedioSistema.Name = "lblPromedioSistema";
-            this.lblPromedioSistema.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedioSistema.TabIndex = 34;
-            this.lblPromedioSistema.Text = "0";
-            // 
-            // lblPromedio1
-            // 
-            this.lblPromedio1.AutoSize = true;
-            this.lblPromedio1.Location = new System.Drawing.Point(546, 566);
-            this.lblPromedio1.Name = "lblPromedio1";
-            this.lblPromedio1.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedio1.TabIndex = 35;
-            this.lblPromedio1.Text = "0";
-            // 
-            // lblPromedio2
-            // 
-            this.lblPromedio2.AutoSize = true;
-            this.lblPromedio2.Location = new System.Drawing.Point(546, 588);
-            this.lblPromedio2.Name = "lblPromedio2";
-            this.lblPromedio2.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedio2.TabIndex = 36;
-            this.lblPromedio2.Text = "0";
-            // 
-            // lblPromedio3
-            // 
-            this.lblPromedio3.AutoSize = true;
-            this.lblPromedio3.Location = new System.Drawing.Point(546, 611);
-            this.lblPromedio3.Name = "lblPromedio3";
-            this.lblPromedio3.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedio3.TabIndex = 37;
-            this.lblPromedio3.Text = "0";
-            // 
-            // lblPromedio4
-            // 
-            this.lblPromedio4.AutoSize = true;
-            this.lblPromedio4.Location = new System.Drawing.Point(856, 566);
-            this.lblPromedio4.Name = "lblPromedio4";
-            this.lblPromedio4.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedio4.TabIndex = 38;
-            this.lblPromedio4.Text = "0";
-            // 
-            // lblPromedio5
-            // 
-            this.lblPromedio5.AutoSize = true;
-            this.lblPromedio5.Location = new System.Drawing.Point(856, 588);
-            this.lblPromedio5.Name = "lblPromedio5";
-            this.lblPromedio5.Size = new System.Drawing.Size(13, 13);
-            this.lblPromedio5.TabIndex = 39;
-            this.lblPromedio5.Text = "0";
-            // 
             // NumeroEvento
             // 
             this.NumeroEvento.HeaderText = "Número de Evento";
@@ -689,11 +564,146 @@ namespace Simulacion.Final.App
             this.Equipo5FinOcupacion.Name = "Equipo5FinOcupacion";
             this.Equipo5FinOcupacion.ReadOnly = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(12, 566);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(228, 13);
+            this.label15.TabIndex = 26;
+            this.label15.Text = "Porcentaje de Alumnos que abandonan la cola";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(12, 588);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(214, 13);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "Inscripciones promedio del sistema por Hora";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(319, 566);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(221, 13);
+            this.label17.TabIndex = 28;
+            this.label17.Text = "Inscripciones promedio del Equipo 1 por Hora";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(319, 588);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(221, 13);
+            this.label18.TabIndex = 29;
+            this.label18.Text = "Inscripciones promedio del Equipo 2 por Hora";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(626, 566);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(221, 13);
+            this.label19.TabIndex = 30;
+            this.label19.Text = "Inscripciones promedio del Equipo 4 por Hora";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(626, 588);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(221, 13);
+            this.label20.TabIndex = 31;
+            this.label20.Text = "Inscripciones promedio del Equipo 5 por Hora";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(319, 611);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(221, 13);
+            this.label21.TabIndex = 32;
+            this.label21.Text = "Inscripciones promedio del Equipo 3 por Hora";
+            // 
+            // lblPorcentajeAbandono
+            // 
+            this.lblPorcentajeAbandono.AutoSize = true;
+            this.lblPorcentajeAbandono.Location = new System.Drawing.Point(246, 566);
+            this.lblPorcentajeAbandono.Name = "lblPorcentajeAbandono";
+            this.lblPorcentajeAbandono.Size = new System.Drawing.Size(13, 13);
+            this.lblPorcentajeAbandono.TabIndex = 33;
+            this.lblPorcentajeAbandono.Text = "0";
+            // 
+            // lblPromedioSistema
+            // 
+            this.lblPromedioSistema.AutoSize = true;
+            this.lblPromedioSistema.Location = new System.Drawing.Point(246, 588);
+            this.lblPromedioSistema.Name = "lblPromedioSistema";
+            this.lblPromedioSistema.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedioSistema.TabIndex = 34;
+            this.lblPromedioSistema.Text = "0";
+            // 
+            // lblPromedio1
+            // 
+            this.lblPromedio1.AutoSize = true;
+            this.lblPromedio1.Location = new System.Drawing.Point(546, 566);
+            this.lblPromedio1.Name = "lblPromedio1";
+            this.lblPromedio1.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedio1.TabIndex = 35;
+            this.lblPromedio1.Text = "0";
+            // 
+            // lblPromedio2
+            // 
+            this.lblPromedio2.AutoSize = true;
+            this.lblPromedio2.Location = new System.Drawing.Point(546, 588);
+            this.lblPromedio2.Name = "lblPromedio2";
+            this.lblPromedio2.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedio2.TabIndex = 36;
+            this.lblPromedio2.Text = "0";
+            // 
+            // lblPromedio3
+            // 
+            this.lblPromedio3.AutoSize = true;
+            this.lblPromedio3.Location = new System.Drawing.Point(546, 611);
+            this.lblPromedio3.Name = "lblPromedio3";
+            this.lblPromedio3.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedio3.TabIndex = 37;
+            this.lblPromedio3.Text = "0";
+            // 
+            // lblPromedio4
+            // 
+            this.lblPromedio4.AutoSize = true;
+            this.lblPromedio4.Location = new System.Drawing.Point(856, 566);
+            this.lblPromedio4.Name = "lblPromedio4";
+            this.lblPromedio4.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedio4.TabIndex = 38;
+            this.lblPromedio4.Text = "0";
+            // 
+            // lblPromedio5
+            // 
+            this.lblPromedio5.AutoSize = true;
+            this.lblPromedio5.Location = new System.Drawing.Point(856, 588);
+            this.lblPromedio5.Name = "lblPromedio5";
+            this.lblPromedio5.Size = new System.Drawing.Size(13, 13);
+            this.lblPromedio5.TabIndex = 39;
+            this.lblPromedio5.Text = "0";
+            // 
+            // progresBar
+            // 
+            this.progresBar.Location = new System.Drawing.Point(249, 288);
+            this.progresBar.Name = "progresBar";
+            this.progresBar.Size = new System.Drawing.Size(431, 23);
+            this.progresBar.TabIndex = 40;
+            this.progresBar.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1059, 630);
+            this.Controls.Add(this.progresBar);
             this.Controls.Add(this.lblPromedio5);
             this.Controls.Add(this.lblPromedio4);
             this.Controls.Add(this.lblPromedio3);
@@ -818,6 +828,7 @@ namespace Simulacion.Final.App
         private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5Alumno;
         private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5TiempoOcupacion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Equipo5FinOcupacion;
+        private System.Windows.Forms.ProgressBar progresBar;
     }
 }
 

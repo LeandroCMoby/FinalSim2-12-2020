@@ -26,15 +26,15 @@ namespace Simulacion.Final.App
             Condiciones condiciones = new Condiciones
             {
                 MediaLlegadaAlumno = Convert.ToInt32(txtMediaLlegadaAlumno.Text),
-                DesvLlegadaAlumno = Convert.ToInt32(txtDesvLlegadaAlumnos),
-                AInscripcion = Convert.ToInt32(txtATiempoInscripcion),
-                BInscripcion = Convert.ToInt32(txtBTiempoInscripcion),
-                ALlegadaMantenimiento = Convert.ToInt32(txtAMantenimiento),
-                BLlegadaMantenmiento = Convert.ToInt32(txtBMantenimiento),
-                MediaMantenimiento = Convert.ToInt32(txtMediaMantenimiento),
-                DesvMantenimiento = Convert.ToInt32(txtDesvMantenimiento),
-                HorasSimulacion = Convert.ToInt32(txtHorasSimulacion),
-                MaxAlumnosCola = Convert.ToInt32(txtMaxAlumnos)
+                DesvLlegadaAlumno = Convert.ToInt32(txtDesvLlegadaAlumnos.Text),
+                AInscripcion = Convert.ToInt32(txtATiempoInscripcion.Text)*60,
+                BInscripcion = Convert.ToInt32(txtBTiempoInscripcion.Text)*60,
+                ALlegadaMantenimiento = Convert.ToInt32(txtAMantenimiento.Text)*60,
+                BLlegadaMantenmiento = Convert.ToInt32(txtBMantenimiento.Text)*60,
+                MediaMantenimiento = Convert.ToInt32(txtMediaMantenimiento.Text),
+                DesvMantenimiento = Convert.ToInt32(txtDesvMantenimiento.Text),
+                HorasSimulacion = Convert.ToInt32(txtHorasSimulacion.Text),
+                MaxAlumnosCola = Convert.ToInt32(txtMaxAlumnos.Text)
             };
 
             return condiciones;
@@ -66,34 +66,80 @@ namespace Simulacion.Final.App
                 Simulacion simulacion = new Simulacion();
                 EstadoSimulacion estado;
                 bool condicion;
-
-                simulacion.estadoAnterior = new EstadoSimulacion();
+                progresBar.Visible = true;
+                simulacion.estadoAnterior = new EstadoSimulacion(condiciones);
                 AgregarFila(simulacion.estadoAnterior);
                 do
                 {
+
                     estado = simulacion.GenerarSimulacion(condiciones);
 
+                    bool CambioHora = Math.Floor(((double)estado.tiempoProximoEvento / 3600)) > Math.Floor(((double)estado.tiempo / 3600));
+                    if (CambioHora)
+                    {
+                        if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion  /10)
+                        {
+                            progresBar.Value = 10;
+                        }else if(Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion /10 * 2)
+                        {
+                            progresBar.Value = 20;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 3)
+                        {
+                            progresBar.Value = 30;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 4)
+                        {
+                            progresBar.Value = 40;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 5)
+                        {
+                            progresBar.Value = 50;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 6)
+                        {
+                            progresBar.Value = 60;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 7)
+                        {
+                            progresBar.Value = 70;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 8)
+                        {
+                            progresBar.Value = 80;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 9)
+                        {
+                            progresBar.Value = 90;
+                        }
+                        else if (Math.Floor((double)(estado.tiempo / 3600)) < condiciones.HorasSimulacion / 10 * 10)
+                        {
+                            progresBar.Value = 100;
+                        }
+
+                    }
+                    AgregarFila(estado);
 
                     bool condicion1 = !estado.equipo1.Libre || !estado.equipo2.Libre || !estado.equipo3.Libre || !estado.equipo4.Libre || !estado.equipo5.Libre;
                     bool condicion2 = estado.colaAlumnos.Count > 0;
-                    bool condicion3 = estado.ColaMantenimientos.Count > 0;
                     bool condicion4 = estado.eventoActual != Evento.Final;
 
-                    condicion = condicion1 || condicion2 || condicion3 || condicion4;
+                    condicion = condicion1 || condicion2 || condicion4;
                 }
                 while (condicion);
 
-                double porcentajeAbandono = estado.AlumnosAbandono / estado.numeroAlumno * 100;
+                double porcentajeAbandono = (double)estado.AlumnosAbandono / (double)estado.numeroAlumno * 100;
                 estado.PromedioInscripcionesSistema = estado.PromedioInscripciones1 + estado.PromedioInscripciones2 + estado.PromedioInscripciones3 + estado.PromedioInscripciones4 + estado.PromedioInscripciones5;
-                lblPorcentajeAbandono.Text = porcentajeAbandono.ToString() + "%";
-                lblPromedio1.Text = estado.PromedioInscripciones1.ToString();
-                lblPromedio2.Text = estado.PromedioInscripciones2.ToString();
-                lblPromedio3.Text = estado.PromedioInscripciones3.ToString();
-                lblPromedio4.Text = estado.PromedioInscripciones4.ToString();
-                lblPromedio5.Text = estado.PromedioInscripciones5.ToString();
-                lblPromedioSistema.Text = estado.PromedioInscripcionesSistema.ToString();
+                // lblPorcentajeAbandono.Text = porcentajeAbandono.ToString() + "%";
+                lblPorcentajeAbandono.Text = StringifyCifra(Math.Round(porcentajeAbandono, 2)) + " %";
+                lblPromedio1.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones1, 2));
+                lblPromedio2.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones2,2));
+                lblPromedio3.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones3,2));
+                lblPromedio4.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones4,2));
+                lblPromedio5.Text = StringifyCifra(Math.Round(estado.PromedioInscripciones5,2));
+                lblPromedioSistema.Text = StringifyCifra(Math.Round(estado.PromedioInscripcionesSistema,2));
 
-
+                progresBar.Visible = false;
             }
 
         }
@@ -105,7 +151,7 @@ namespace Simulacion.Final.App
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtATiempoInscripcion.Text))
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtBMantenimiento.Text))
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtBTiempoInscripcion.Text))
-                ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtDesvLlegadaAlumnos))
+                ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtDesvLlegadaAlumnos.Text))
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtDesvMantenimiento.Text))
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtMediaLlegadaAlumno.Text))
                 ||Validaciones.ValidarMayoraCeroInt(Convert.ToDouble(txtMediaMantenimiento.Text))
@@ -119,10 +165,10 @@ namespace Simulacion.Final.App
             Evento TipoEvento =estado.eventoActual;
             string reloj = StringifyHora(estado.tiempo);
             string LlegadaProximoAlumno = StringifyHora(estado.tiempoLlegadaProximoAlumno);
-            string LlegadaProximoMantenimiento = StringifyHora(estado.tiempoLlegadaProximoAlumno);
+            string LlegadaProximoMantenimiento = StringifyHora(estado.tiempoLlegadaProximoMantenimiento);
             string colaAlumnos = estado.colaAlumnos.Count.ToString();
             string colaMantenimiento = estado.ColaMantenimientos.Count.ToString();
-            string regreso = StringifyHora(estado.colaAbandono.First().TiempoRegreso);
+            string regreso = StringifyHora(estado.colaAbandono.Count > 0 ? estado.colaAbandono.First().TiempoRegreso : 0);
 
             #region Equipo1
             string e1Estado = estado.equipo1.Libre ? "Libre" : "Ocupado";
@@ -243,6 +289,19 @@ namespace Simulacion.Final.App
                 segundos = "0" + segundos;
 
             return horas + ":" + minutos + ":" + segundos;
+        }
+
+        private string StringifyCifra(double cifra)
+        {
+            var nfi = new NumberFormatInfo
+            {
+                NumberDecimalSeparator = ",",
+                NumberGroupSeparator = "."
+            };
+
+            string resultado = cifra.ToString("#,##0.00", nfi);
+
+            return resultado;
         }
     }
 }

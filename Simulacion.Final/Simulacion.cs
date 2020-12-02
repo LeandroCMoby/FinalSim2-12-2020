@@ -13,11 +13,19 @@ namespace Simulacion.Final
 
         public EstadoSimulacion GenerarSimulacion(Condiciones condiciones)
         {
+         
             estadoActual = (EstadoSimulacion)estadoAnterior.Clone();
             estadoActual.tiempo = estadoAnterior.tiempoProximoEvento;
             estadoActual.eventoActual = estadoAnterior.proximoEvento;
 
-            switch (estadoAnterior.eventoActual)
+            bool CambioHora = Math.Floor(((double)estadoActual.tiempo / 3600)) > Math.Floor(((double)estadoAnterior.tiempo / 3600));
+
+            if (CambioHora)
+            {
+                estadoActual.CalcularPromedios();
+            }
+
+            switch (estadoActual.eventoActual)
             {
                 case Evento.LlegadaAlumno:
                     LlegoAlumno(condiciones);
@@ -44,12 +52,14 @@ namespace Simulacion.Final
                     break;
             }
 
-            return estadoAnterior;
+            estadoActual.CalcularTiempoProximoEvento();
+            estadoAnterior = (EstadoSimulacion)estadoActual.Clone();
+            return estadoActual;
         }
 
         private void FinAtencion(Equipo equipo)
         {
-            if (equipo.TipoOcupacion == Ocupacion.Inscripcion)
+            if(equipo.TipoOcupacion == Ocupacion.Inscripcion)
             {
                 equipo.CantidadInscripciones++;
             }
@@ -64,18 +74,10 @@ namespace Simulacion.Final
                    estadoActual.equipo5,
                 };
 
-                Equipo equipoAux = equipos.FindAll(x => x.Mantenido == false).First();
-                if(equipoAux == null)
+                List<Equipo> equiposAux = equipos.FindAll(x => x.Mantenido == false);
+                if(equiposAux.Count > 0)
                 {
-                    estadoActual.equipo1.Mantenido = false;
-                    estadoActual.equipo2.Mantenido = false;
-                    estadoActual.equipo3.Mantenido = false;
-                    estadoActual.equipo4.Mantenido = false;
-                    estadoActual.equipo5.Mantenido = false;
-                }
-                else
-                {
-                    Equipo equiposSinMantener = equipos.FindAll(x => x.Mantenido == false & x.Libre == true).First();
+                    Equipo equiposSinMantener = equiposAux.FindAll(x => x.Libre).FirstOrDefault();
 
                     if(equiposSinMantener == null)
                     {
@@ -83,6 +85,7 @@ namespace Simulacion.Final
                     }
                     else
                     {
+                        equiposSinMantener.alumno = null;
                         equiposSinMantener.Libre = false;
                         equiposSinMantener.TipoOcupacion = Ocupacion.Mantenimiento;
                         equiposSinMantener.ObtenerTiempoAtencion();
@@ -93,7 +96,7 @@ namespace Simulacion.Final
                 }
                 equipo.mantenimiento = null;
             }
-            if (estadoActual.ColaMantenimientos.Count > 0 && equipo.Mantenido==false)
+            if(estadoActual.ColaMantenimientos.Count > 0 && equipo.Mantenido==false)
             {
                 equipo.alumno = null;
                 equipo.Libre = false;
@@ -106,6 +109,7 @@ namespace Simulacion.Final
             }else if(estadoActual.colaAlumnos.Count> 0)
             {
                 equipo.alumno = estadoAnterior.colaAlumnos.First();
+                equipo.mantenimiento = null;
                 estadoActual.colaAlumnos.RemoveAt(0);
                 equipo.Libre = false;
                 equipo.TipoOcupacion = Ocupacion.Inscripcion;
@@ -125,13 +129,43 @@ namespace Simulacion.Final
 
         private void LlegoMantenimiento(Condiciones condiciones)
         {
-            
+
+            Mantenimiento mantenimiento = new Mantenimiento();
+            estadoActual.ColaMantenimientos.Clear();
+            List<Equipo> equipos = new List<Equipo>
+                {
+                   estadoActual.equipo1,
+                   estadoActual.equipo2,
+                   estadoActual.equipo3,
+                   estadoActual.equipo4,
+                   estadoActual.equipo5,
+                };
+
+            equipos.ForEach(x => x.Mantenido = false);
+
+            Equipo equipoLibre = equipos.FindAll(x => x.Libre).FirstOrDefault() ;
+            if (equipoLibre == null)
+            {
+                estadoActual.ColaMantenimientos.Add(mantenimiento);
+            }
+            else
+            {
+                equipoLibre.alumno = null;
+                equipoLibre.Libre = false;
+                equipoLibre.TipoOcupacion = Ocupacion.Mantenimiento;
+                equipoLibre.ObtenerTiempoAtencion();
+                equipoLibre.TiempoFinAtencion = equipoLibre.TiempoEjecucion + estadoActual.tiempo;
+                equipoLibre.Mantenido = true;
+                equipoLibre.mantenimiento = mantenimiento;
+            }
+
+            estadoActual.ObtenerTiempoLlegadaProximoMantenimiento(estadoActual.tiempo);
         }
 
-        private void LlegoAlumno(Condiciones condiciones)
+        private void LlegoAlumno(Condiciones condiciones) 
         {
             Alumno alumno;
-            if(estadoActual.colaAbandono.First() != null && estadoActual.tiempo == estadoActual.colaAbandono.First().TiempoRegreso)
+            if(estadoActual.colaAbandono.Count > 0 && estadoActual.tiempo == estadoActual.colaAbandono.First().TiempoRegreso)
             {
                 alumno = estadoActual.colaAbandono.First();
                 estadoActual.colaAbandono.RemoveAt(0);
@@ -141,8 +175,8 @@ namespace Simulacion.Final
                 alumno = new Alumno(condiciones, estadoActual.numeroAlumno);
             }
            
-            estadoActual.numeroAlumno++;
-            estadoActual.ObtenerTiempoLlegadaProximoAlumno(estadoActual.tiempo);
+            
+            
             List<Equipo> equipos = new List<Equipo>
             {
                 estadoActual.equipo1,
@@ -151,7 +185,8 @@ namespace Simulacion.Final
                 estadoActual.equipo4,
                 estadoActual.equipo5
             };
-            Equipo proximoEquipo = equipos.FindAll(x => x.Libre).First();
+
+            Equipo proximoEquipo = equipos.FindAll(x => x.Libre).Count > 0 ? equipos.FindAll(x => x.Libre).First() : null ;
             if(proximoEquipo != null)
             {
                 proximoEquipo.Libre = false;
@@ -174,7 +209,8 @@ namespace Simulacion.Final
                 }
                 
             }
-
+            estadoActual.numeroAlumno++;
+            estadoActual.ObtenerTiempoLlegadaProximoAlumno(estadoActual.tiempo);
         }
     }
 }
