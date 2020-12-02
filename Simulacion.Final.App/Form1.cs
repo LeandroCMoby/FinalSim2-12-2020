@@ -164,11 +164,11 @@ namespace Simulacion.Final.App
             int NumeroEvento = estado.numeroEvento;
             Evento TipoEvento =estado.eventoActual;
             string reloj = StringifyHora(estado.tiempo);
-            string LlegadaProximoAlumno = StringifyHora(estado.tiempoLlegadaProximoAlumno);
-            string LlegadaProximoMantenimiento = StringifyHora(estado.tiempoLlegadaProximoMantenimiento);
+            string LlegadaProximoAlumno = estado.tiempoLlegadaProximoAlumno > estado.condicionesIniciales.HorasSimulacion*3600 ? " - " : StringifyHora(estado.tiempoLlegadaProximoAlumno);
+            string LlegadaProximoMantenimiento = estado.tiempoLlegadaProximoMantenimiento > estado.condicionesIniciales.HorasSimulacion * 3600 ? " - " : StringifyHora(estado.tiempoLlegadaProximoMantenimiento);
             string colaAlumnos = estado.colaAlumnos.Count.ToString();
             string colaMantenimiento = estado.ColaMantenimientos.Count.ToString();
-            string regreso = StringifyHora(estado.colaAbandono.Count > 0 ? estado.colaAbandono.First().TiempoRegreso : 0);
+            string regreso = estado.colaAbandono.Count > 0 && estado.colaAbandono.First().TiempoRegreso < estado.condicionesIniciales.HorasSimulacion * 3600 ? StringifyHora(estado.colaAbandono.First().TiempoRegreso) : " - " ;
 
             #region Equipo1
             string e1Estado = estado.equipo1.Libre ? "Libre" : "Ocupado";
